@@ -5,6 +5,7 @@ import subprocess
 
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 full_body = cv2.CascadeClassifier("haarcascade_fullbody.xml")
+upper_body = cv2.CascadeClassifier("haarcascade_upperbody.xml")
 
 
 video_capture = cv2.VideoCapture(0)
@@ -12,7 +13,7 @@ video_capture = cv2.VideoCapture(0)
 text = "Welcome to Dreeshtee"
 
 os.system('.\\espeak.exe -s 100 "Welcome to Dreeshtee"')
-#os.system('.\\espeak.exe  -g 20 -s 100 %(text)s'  % locals())
+os.system('.\\espeak.exe  -g 20 -s 100 %(text)s'  % locals())
 
 #Declaring a temp variable
 temp = 0
@@ -54,10 +55,10 @@ while True:
     #Count the Number of faces
     count=len(faces)
 
-    #if count!=temp:
-     #   os.system('.\\espeak.exe -s 100 %(count)s' % locals())
+    if count!=temp:
+        os.system('.\\espeak.exe -s 100 %(count)s' % locals())
 
-    #temp=count
+    temp=count
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
